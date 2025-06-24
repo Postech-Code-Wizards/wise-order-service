@@ -1,0 +1,18 @@
+type Query{
+
+    getPedidoById(id: ID!):PedidoResponse
+    getAllPedidos: [Pedidos]
+
+
+
+}
+
+type Mutation{
+
+    createPedido(input: PedidoInput!): Boolean
+    updatePedidoStatus(id: ID!, input: PedidoUpdateStatus!): Boolean
+
+
+
+
+}

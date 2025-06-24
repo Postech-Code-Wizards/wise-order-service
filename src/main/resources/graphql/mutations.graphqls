@@ -1,0 +1,12 @@
+input PedidoInput{
+
+    clienteId: ID!
+    cartaoCredito: String!
+    itens: [ItemPedido!]!
+
+}
+
+input PedidoUpdateStatus{
+    status: Status!
+
+}

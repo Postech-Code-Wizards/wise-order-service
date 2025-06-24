@@ -1,0 +1,28 @@
+type PedidoResponse{
+
+    id: ID!
+    clienteId: ID!
+    dataCriacao: String!
+    status: Status!
+    cartaoCredito: String!
+    itens: [ItemPedido!]!
+    valorTotal: Float!
+
+}
+
+type ItemPedido{
+
+    id: ID!
+    pedidoId: ID!
+    produtoId: ID!
+    quantidade: Int!
+    precoUnitario: Float!
+    subtotal: Float!
+}
+
+enum Status{
+    ABERTO,
+    FECHADO_COM_SUCESSO,
+    FECHADO_SEM_ESTOQUE,
+    FECHADO_SEM_CREDITO
+}
