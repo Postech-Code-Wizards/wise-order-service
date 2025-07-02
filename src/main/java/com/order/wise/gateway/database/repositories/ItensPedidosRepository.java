@@ -1,4 +1,6 @@
 package com.order.wise.gateway.database.repositories;
 
-public interface ItensPedidosRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ItensPedidosRepository extends JpaRepository<ItensPedidosRepository, Long> {
 }
