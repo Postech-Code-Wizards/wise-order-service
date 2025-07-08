@@ -2,10 +2,11 @@ CREATE TYPE status AS ENUM ('ABERTO', 'FECHADO_COM_SUCESSO', 'FECHADO_SEM_ESTOQU
 
 CREATE TABLE pedidos (
                          id BIGSERIAL PRIMARY KEY,
-                         cliente_id BIGSERIAL NOT NULL,
+                         cliente_id BIGINT NOT NULL,
                          data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                          status status NOT NULL DEFAULT 'ABERTO',
                          cartao_credito VARCHAR(19) NOT NULL,
+                         pagamento_id BIGINT NOT NULL,
                          valor_total DECIMAL(10,2) NOT NULL
 );
 

@@ -1,15 +1,9 @@
 package com.order.wise.converter;
 
-import com.order.wise.domain.ItensPedidos;
 import com.order.wise.domain.Pedido;
-import com.order.wise.gateway.database.entities.ItensPedidosEntity;
 import com.order.wise.gateway.database.entities.PedidoEntity;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -26,6 +20,8 @@ public class PedidoConverter {
         pedidoEntity.setClienteId(pedido.getClienteId());
         pedidoEntity.setStatus(pedido.getStatus());
         pedidoEntity.setDataCriacao(pedido.getDataCriacao());
+        pedidoEntity.setCartaoCredito(pedido.getCartaoCredito());
+        pedidoEntity.setPagamentoId(pedido.getPagamentoId());
         pedidoEntity.setValorTotal(pedido.getValorTotal());
         pedidoEntity.setItensPedidos(itensPedidosConverter.toEntity(pedido.getItensPedidos(), pedidoEntity));
 
@@ -40,7 +36,7 @@ public class PedidoConverter {
 //                    itensPedidosEntity.setPrecoUnitario(pe.getPrecoUnitario());
 //                    itensPedidosEntity.setSubtotal(pe.getSubtotal());
 //                    return itensPedidosEntity;
-////                }).toList();
+//                  }).toList();
 //
 //        pedidoEntity.setItensPedidos(itensPedidosEntities);
         return pedidoEntity;
@@ -55,6 +51,8 @@ public class PedidoConverter {
         pedido.setClienteId(pedidoEntity.getClienteId());
         pedido.setStatus(pedidoEntity.getStatus());
         pedido.setDataCriacao(pedidoEntity.getDataCriacao());
+        pedido.setCartaoCredito(pedidoEntity.getCartaoCredito());
+        pedido.setPagamentoId(pedidoEntity.getPagamentoId());
         pedido.setValorTotal(pedidoEntity.getValorTotal());
         pedido.setItensPedidos(itensPedidosConverter.toDomain(pedidoEntity.getItensPedidos(), pedido));
 

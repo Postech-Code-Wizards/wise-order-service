@@ -22,6 +22,7 @@ public class Pedido {
     private ZonedDateTime dataCriacao;
     private Status status;
     private String cartaoCredito;
+    private Long pagamentoId;
     private BigDecimal valorTotal;
     private List<ItensPedidos> itensPedidos;
 
