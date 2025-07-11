@@ -2,12 +2,13 @@ package com.order.wise.converter;
 
 import com.order.wise.domain.ItensPedidos;
 import com.order.wise.domain.Pedido;
+import com.order.wise.domain.dtos.request.BaixaEstoqueRequest;
 import com.order.wise.gateway.database.entities.ItensPedidosEntity;
 import com.order.wise.gateway.database.entities.PedidoEntity;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
+@Component
 public class ItensPedidosConverter {
 
     public List<ItensPedidosEntity> toEntity(List<ItensPedidos> itensPedidos, PedidoEntity pedidoEntity){
@@ -42,6 +43,19 @@ public class ItensPedidosConverter {
                 )).toList();
 
         return itensPedidos;
+
+    }
+
+    public List<BaixaEstoqueRequest> toBaixaEstoqueRequest(List<ItensPedidos> itensPedidos){
+
+        List<BaixaEstoqueRequest> pedidoBaixaEstoque = itensPedidos.stream()
+                .map(item -> new BaixaEstoqueRequest(
+                        item.getProdutoId(),
+                        item.getQuantidade(),
+                        item.getPedido_id().getId()
+                ))
+                .toList();
+        return pedidoBaixaEstoque;
 
     }
 

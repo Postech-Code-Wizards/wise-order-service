@@ -13,6 +13,4 @@ public class BaixaEstoqueRequest {
     private Integer quantidade;
     private Long pedidoId;
 
-//    public BaixaEstoqueRequest(Long produtoId, Integer quantidade, Object o, Long id) {
-//    }
 }

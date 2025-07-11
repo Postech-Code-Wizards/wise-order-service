@@ -15,6 +15,8 @@ public interface PedidoGateway {
 
    // Pedido updateStatus(Long id, String status);
 
+    Pedido updateFinalizarPedido(Pedido pedido);
+
 
     void updateStatus(Long id, Status status);
 }

@@ -6,7 +6,6 @@ import com.order.wise.gateway.ItensPedidosGateway;
 import com.order.wise.gateway.database.entities.ItensPedidosEntity;
 import com.order.wise.gateway.database.entities.PedidoEntity;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

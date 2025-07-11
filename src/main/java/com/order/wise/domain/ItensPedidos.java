@@ -1,7 +1,6 @@
 package com.order.wise.domain;
 
 
-import com.order.wise.gateway.database.entities.PedidoEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

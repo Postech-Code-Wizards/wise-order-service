@@ -46,6 +46,17 @@ public class PedidoJpaGateway implements PedidoGateway {
     }
 
     @Override
+    public Pedido updateFinalizarPedido(Pedido pedido){
+
+        PedidoEntity pedidoEntity = pedidoRepository.findById(pedido.getId()).orElse(null);
+        pedidoEntity.setStatus(pedido.getStatus());
+        pedidoEntity.setPagamentoId(pedido.getPagamentoId());
+
+        pedidoRepository.save(pedidoEntity);
+        return pedidoConverter.toDomain(pedidoEntity);
+    }
+
+    @Override
     public void updateStatus(Long id, Status status) {
 
         PedidoEntity pedidoEntity = pedidoRepository.findById(id).orElse(null);

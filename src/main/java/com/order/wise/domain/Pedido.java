@@ -1,7 +1,6 @@
 package com.order.wise.domain;
 
 import com.order.wise.domain.enums.Status;
-import com.order.wise.gateway.database.entities.ItensPedidosEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
