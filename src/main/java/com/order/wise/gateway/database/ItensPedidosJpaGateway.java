@@ -1,6 +1,6 @@
 package com.order.wise.gateway.database;
 
-import com.order.wise.converter.ItensPedidosConverter;
+import com.order.wise.gateway.database.converter.ItensPedidosConverter;
 import com.order.wise.domain.ItensPedidos;
 import com.order.wise.gateway.ItensPedidosGateway;
 import com.order.wise.gateway.database.entities.ItensPedidosEntity;
@@ -16,14 +16,11 @@ public class ItensPedidosJpaGateway implements ItensPedidosGateway {
 
     private final ItensPedidosConverter itensPedidosConverter;
 
-    @Override
-    public void save(List<ItensPedidos> itensPedidos, PedidoEntity pedidoEntity) {
-
-        ItensPedidosEntity itensPedidosEntity = (ItensPedidosEntity) itensPedidosConverter.toEntity(itensPedidos, pedidoEntity);
-
-    }
-
-
-
+//    @Override
+//    public void save(List<ItensPedidos> itensPedidos, PedidoEntity pedidoEntity) {
+//
+//        ItensPedidosEntity itensPedidosEntity = (ItensPedidosEntity) itensPedidosConverter.toEntity(itensPedidos, pedidoEntity);
+//
+//    }
 
 }

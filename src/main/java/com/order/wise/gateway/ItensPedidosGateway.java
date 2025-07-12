@@ -9,5 +9,5 @@ public interface ItensPedidosGateway {
 
     //void save(ItensPedidos itensPedidos);
 
-    void save(List<ItensPedidos> itensPedidos, PedidoEntity pedidoEntity);
+    //void save(List<ItensPedidos> itensPedidos, PedidoEntity pedidoEntity);
 }
