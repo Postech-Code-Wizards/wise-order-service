@@ -1,8 +1,8 @@
 package com.order.wise.gateway.database.converter;
 
 import com.order.wise.domain.Pedido;
-import com.order.wise.application.facade.dtos.request.PagamentoRequest;
 import com.order.wise.gateway.database.entities.PedidoEntity;
+import com.order.wise.gateway.messaging.rabbitMQ.dto.PaymentDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -46,9 +46,9 @@ public class PedidoConverter {
         return pedido;
     }
 
-    public PagamentoRequest toPagamentoRequest(Pedido pedido){
+    public PaymentDTO toPaymentDTO(Pedido pedido){
 
-        return new PagamentoRequest(
+        return new PaymentDTO(
                 pedido.getValorTotal(),
                 pedido.getCartaoCredito(),
                 pedido.getId(),

@@ -1,21 +1,31 @@
 package com.order.wise.application.usecase;
 
+import com.order.wise.application.usecase.itenspedido.CalcularSubtotalItemUseCase;
+import com.order.wise.application.usecase.pedido.CalcularValorTotalPedidoUseCase;
 import com.order.wise.domain.Pedido;
+import com.order.wise.domain.enums.Status;
+import com.order.wise.gateway.PedidoGateway;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
 public class CreateOrderUseCase {
 
-    public void createOrder(Pedido pedido) {
+    private final PedidoGateway pedidoGateway;
+    private final CalcularSubtotalItemUseCase calcularSubtotalItemUseCase;
+    private final CalcularValorTotalPedidoUseCase calcularValorTotalPedidoUseCase;
+
+    public Pedido createOrder(Pedido pedido) {
 
         log.info("Creating order: {}", pedido);
-        // todo - Aqui você pode implementar a lógica para criar um pedido
-        // todo - Fazer chamada ao gateway ou repositório para salvar o pedido
-        // todo - Chamar outros metodos nenessários para completar o processo de criação do pedido
-        // todo - Tratar mudança de status se necessário
 
+        pedido.setItensPedidos(calcularSubtotalItemUseCase.calcularSubtotalItens(pedido.getItensPedidos()));
+        pedido.setValorTotal(calcularValorTotalPedidoUseCase.calcularValorTotal(pedido.getItensPedidos()));
+        pedido.setStatus(Status.ABERTO);
+        pedidoGateway.save(pedido);
+        return pedido;
     }
 }

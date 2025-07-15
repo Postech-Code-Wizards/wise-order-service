@@ -30,12 +30,13 @@ public class PedidoJpaGateway implements PedidoGateway {
     }
 
     @Override
-    public void updateStatus(Long id, Status status) {
+    public void updateStatus(Long id, Status status, Long idPagamento) {
 
         PedidoEntity pedidoEntity = pedidoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pedido não encontrado com o ID: " + id));
 
         pedidoEntity.setStatus(status);
+        pedidoEntity.setPagamentoId(idPagamento);
         pedidoRepository.save(pedidoEntity);
 
     }

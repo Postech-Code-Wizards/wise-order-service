@@ -9,5 +9,5 @@ public interface PedidoGateway {
 
     Pedido getById(Long id);
 
-    void updateStatus(Long id, Status status);
+    void updateStatus(Long id, Status status, Long idPgamento);
 }

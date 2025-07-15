@@ -11,9 +11,8 @@ public class UpdateStatusPedidoUseCase {
 
     private final PedidoGateway pedidoGateway;
 
-    public void updateStatusPedido(Long idPedido, Status status) {
+    public void updateStatusPedido(Long idPedido, Status status, Long idPagamento) {
 
-        pedidoGateway.updateStatus(idPedido, status);
-
+        pedidoGateway.updateStatus(idPedido, status, idPagamento);
     }
 }
