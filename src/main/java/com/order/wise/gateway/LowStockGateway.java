@@ -1,6 +1,6 @@
 package com.order.wise.gateway;
 
-import com.order.wise.gateway.messaging.rabbitMQ.dto.StockDTO;
+import com.order.wise.gateway.messaging.rabbitmq.dto.StockDTO;
 
 import java.util.List;
 

@@ -44,7 +44,7 @@ public class PedidoEntity {
     @Column(name = "cartao_credito", nullable = false, length =19 )
     private String cartaoCredito;
 
-    @Column(name = "pagamento_id", nullable = false)
+    @Column(name = "pagamento_id")
     private Long pagamentoId;
 
     @DecimalMin(value = "0.00", inclusive = false)

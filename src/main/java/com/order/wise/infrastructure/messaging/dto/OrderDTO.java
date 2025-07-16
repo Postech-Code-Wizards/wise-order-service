@@ -1,29 +1,20 @@
 package com.order.wise.infrastructure.messaging.dto;
 
-import com.order.wise.domain.ItensPedidos;
-import com.order.wise.domain.enums.Status;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDTO {
 
-    private Long id;
-    private Long clienteId;
-    private ZonedDateTime dataCriacao;
-    private Status status;
-    private String cartaoCredito;
-    private Long pagamentoId;
-    private BigDecimal valorTotal;
-    private List<ItensPedidos> itensPedidos;
+    private BigDecimal totalPrice;
+    private ClientDTO client;
+    private List<ProductDTO> productList;
+    private PaymentMethodDTO paymentMethod;
 
 }

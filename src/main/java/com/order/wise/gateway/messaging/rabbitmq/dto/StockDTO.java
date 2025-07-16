@@ -1,4 +1,4 @@
-package com.order.wise.gateway.messaging.rabbitMQ.dto;
+package com.order.wise.gateway.messaging.rabbitmq.dto;
 
 
 import lombok.AllArgsConstructor;

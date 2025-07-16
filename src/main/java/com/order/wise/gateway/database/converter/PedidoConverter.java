@@ -2,13 +2,11 @@ package com.order.wise.gateway.database.converter;
 
 import com.order.wise.domain.Pedido;
 import com.order.wise.gateway.database.entities.PedidoEntity;
-import com.order.wise.gateway.messaging.rabbitMQ.dto.PaymentDTO;
-import com.order.wise.infrastructure.messaging.dto.OrderDTO;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PedidoConverter {
 
     private final ItensPedidosConverter itensPedidosConverter;
@@ -34,42 +32,17 @@ public class PedidoConverter {
     public Pedido toDomain(PedidoEntity pedidoEntity) {
         if (pedidoEntity == null) return null;
 
-        Pedido pedido = new Pedido();
-        pedido.setId(pedidoEntity.getId());
-        pedido.setClienteId(pedidoEntity.getClienteId());
-        pedido.setStatus(pedidoEntity.getStatus());
-        pedido.setDataCriacao(pedidoEntity.getDataCriacao());
-        pedido.setCartaoCredito(pedidoEntity.getCartaoCredito());
-        pedido.setPagamentoId(pedidoEntity.getPagamentoId());
-        pedido.setValorTotal(pedidoEntity.getValorTotal());
-        pedido.setItensPedidos(itensPedidosConverter.toDomain(pedidoEntity.getItensPedidos(), pedido));
-
-        return pedido;
-    }
-
-    public Pedido toPedido(OrderDTO orderDTO) {
-
-        return new Pedido(
-                orderDTO.getId(),
-                orderDTO.getClienteId(),
-                orderDTO.getDataCriacao(),
-                orderDTO.getStatus(),
-                orderDTO.getCartaoCredito(),
-                orderDTO.getPagamentoId(),
-                orderDTO.getValorTotal(),
-                orderDTO.getItensPedidos()
-        );
-
+        return Pedido.builder()
+                .id(pedidoEntity.getId())
+                .clienteId(pedidoEntity.getClienteId())
+                .status(pedidoEntity.getStatus())
+                .dataCriacao(pedidoEntity.getDataCriacao())
+                .cartaoCredito(pedidoEntity.getCartaoCredito())
+                .pagamentoId(pedidoEntity.getPagamentoId())
+                .valorTotal(pedidoEntity.getValorTotal())
+                .itensPedidos(itensPedidosConverter.toDomain(pedidoEntity.getItensPedidos(), null))
+                .build();
 
     }
 
-    public PaymentDTO toPaymentDTO(Pedido pedido) {
-
-        return new PaymentDTO(
-                pedido.getValorTotal(),
-                pedido.getCartaoCredito(),
-                pedido.getId(),
-                pedido.getClienteId()
-        );
-    }
 }

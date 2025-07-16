@@ -1,7 +1,7 @@
-package com.order.wise.gateway.messaging.rabbitMQ;
+package com.order.wise.gateway.messaging.rabbitmq;
 
 import com.order.wise.gateway.LowStockGateway;
-import com.order.wise.gateway.messaging.rabbitMQ.dto.StockDTO;
+import com.order.wise.gateway.messaging.rabbitmq.dto.StockDTO;
 import com.order.wise.infrastructure.messaging.RabbitMQConfig;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

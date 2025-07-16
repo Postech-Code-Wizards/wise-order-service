@@ -1,7 +1,6 @@
 package com.order.wise.gateway;
 
-import com.order.wise.gateway.messaging.rabbitMQ.dto.PaymentDTO;
-import com.order.wise.gateway.messaging.rabbitMQ.dto.StockDTO;
+import com.order.wise.gateway.messaging.rabbitmq.dto.PaymentDTO;
 
 public interface PaymentGateway {
 

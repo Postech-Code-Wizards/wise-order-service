@@ -6,7 +6,7 @@ CREATE TABLE pedidos (
                          data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                          status status NOT NULL DEFAULT 'ABERTO',
                          cartao_credito VARCHAR(19) NOT NULL,
-                         pagamento_id BIGINT NOT NULL,
+                         pagamento_id BIGINT NULL,
                          valor_total DECIMAL(10,2) NOT NULL
 );
 
