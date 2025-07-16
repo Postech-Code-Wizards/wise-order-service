@@ -25,9 +25,4 @@ public class Pedido {
     private BigDecimal valorTotal;
     private List<ItensPedidos> itensPedidos;
 
-
-
-
-
-
 }

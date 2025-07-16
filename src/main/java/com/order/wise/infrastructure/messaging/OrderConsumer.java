@@ -1,5 +1,6 @@
 package com.order.wise.infrastructure.messaging;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.order.wise.application.facade.OrderFacade;
 import com.order.wise.infrastructure.messaging.dto.OrderDTO;
 import lombok.RequiredArgsConstructor;
@@ -13,16 +14,17 @@ import org.springframework.stereotype.Component;
 public class OrderConsumer {
 
     private final OrderFacade orderFacade;
+    private final ObjectMapper objectMapper;
 
     @RabbitListener(queues = RabbitMQConfig.ORDER_QUEUE_NAME)
     public void receiveOrderMessage(String message) {
 
         log.info("Received order message: {}", message);
-        // todo - Converter a message para o OrderDTO
-        // todo - Aqui você pode usar um conversor ou mapper para transformar a mensagem em um objeto OrderDTO
-        // todo - Por exemplo, se a mensagem for um JSON, você pode usar uma biblioteca como Jackson para fazer a conversão
-        OrderDTO orderDTO = new OrderDTO();
-        orderFacade.receiverOrder(orderDTO);
-
+        try {
+            OrderDTO orderDTO = objectMapper.readValue(message, OrderDTO.class);
+            orderFacade.receiverOrder(orderDTO);
+        } catch (Exception e) {
+            log.error("Failed to process order message: {}", message, e);
+        }
     }
 }

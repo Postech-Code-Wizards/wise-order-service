@@ -3,6 +3,7 @@ package com.order.wise.gateway.database.converter;
 import com.order.wise.domain.Pedido;
 import com.order.wise.gateway.database.entities.PedidoEntity;
 import com.order.wise.gateway.messaging.rabbitMQ.dto.PaymentDTO;
+import com.order.wise.infrastructure.messaging.dto.OrderDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,7 @@ public class PedidoConverter {
 
     public PedidoEntity toEntity(Pedido pedido) {
 
-        if( pedido == null)return null;
+        if (pedido == null) return null;
 
         PedidoEntity pedidoEntity = new PedidoEntity();
         pedidoEntity.setId(pedido.getId());
@@ -31,7 +32,7 @@ public class PedidoConverter {
     }
 
     public Pedido toDomain(PedidoEntity pedidoEntity) {
-        if( pedidoEntity == null)return null;
+        if (pedidoEntity == null) return null;
 
         Pedido pedido = new Pedido();
         pedido.setId(pedidoEntity.getId());
@@ -46,7 +47,23 @@ public class PedidoConverter {
         return pedido;
     }
 
-    public PaymentDTO toPaymentDTO(Pedido pedido){
+    public Pedido toPedido(OrderDTO orderDTO) {
+
+        return new Pedido(
+                orderDTO.getId(),
+                orderDTO.getClienteId(),
+                orderDTO.getDataCriacao(),
+                orderDTO.getStatus(),
+                orderDTO.getCartaoCredito(),
+                orderDTO.getPagamentoId(),
+                orderDTO.getValorTotal(),
+                orderDTO.getItensPedidos()
+        );
+
+
+    }
+
+    public PaymentDTO toPaymentDTO(Pedido pedido) {
 
         return new PaymentDTO(
                 pedido.getValorTotal(),

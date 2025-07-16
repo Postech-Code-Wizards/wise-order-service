@@ -49,7 +49,7 @@ public class ItensPedidosConverter {
 
     public List<StockDTO> toStockDto(List<ItensPedidos> itensPedidos) {
 
-       return itensPedidos.stream()
+        return itensPedidos.stream()
                 .map(item -> new StockDTO(
                         item.getProdutoId(),
                         item.getQuantidade(),
