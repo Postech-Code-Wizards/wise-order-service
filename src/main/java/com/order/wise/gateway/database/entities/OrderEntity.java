@@ -1,7 +1,7 @@
 package com.order.wise.gateway.database.entities;
 
 
-import com.order.wise.domain.enums.Status;
+import com.order.wise.domain.enums.StatusEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import lombok.AllArgsConstructor;
@@ -17,41 +17,41 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "pedidos")
+@Table(name = "tb_order")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PedidoEntity {
+public class OrderEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "cliente_id", nullable = false)
-    private Long clienteId;
+    @Column(name = "client_id", nullable = false)
+    private Long clientId;
 
     @CreationTimestamp
-    @Column(name = "data_criacao", nullable = false)
-    private ZonedDateTime dataCriacao;
+    @Column(name = "date_created", nullable = false)
+    private ZonedDateTime dateCreated;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @JdbcType(PostgreSQLEnumJdbcType.class)
-    private Status status;
+    private StatusEnum status;
 
-    @Column(name = "cartao_credito", nullable = false, length =19 )
-    private String cartaoCredito;
+    @Column(name = "credit_card", nullable = false, length =19 )
+    private String creditCard;
 
-    @Column(name = "pagamento_id")
-    private Long pagamentoId;
+    @Column(name = "payment_id")
+    private Long paymentId;
 
     @DecimalMin(value = "0.00", inclusive = false)
-    @Column(name = "valor_total", precision = 10, scale = 2, nullable = false)
-    private BigDecimal valorTotal;
+    @Column(name = "totalValue", precision = 10, scale = 2, nullable = false)
+    private BigDecimal totalValue;
 
-    @OneToMany(mappedBy = "pedido_id", cascade = CascadeType.ALL)
-    private List<ItensPedidosEntity> itensPedidos;
+    @OneToMany(mappedBy = "orderEntity", cascade = CascadeType.ALL)
+    private List<OrderItemEntity> orderItemEntities;
 
 }

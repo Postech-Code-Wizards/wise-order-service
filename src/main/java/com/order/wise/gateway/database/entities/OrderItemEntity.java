@@ -11,12 +11,12 @@ import lombok.Setter;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "itens_pedidos")
+@Table(name = "tb_order_item")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItensPedidosEntity {
+public class OrderItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,21 +24,24 @@ public class ItensPedidosEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "pedido_id", nullable = false)
-    private PedidoEntity pedido_id;
+    @JoinColumn(name = "order_id", nullable = false)
+    private OrderEntity orderEntity;
 
-    @Column(name = "sku_produto", nullable = false, length = 50)
-    private Long produtoId;
+    @Column(name = "product_id", nullable = false)
+    private Long productId;
 
-    @Column(name = "nome_produto", nullable = false, length = 100)
-    private String nomeProduto;
+    @Column(name = "sku_product", nullable = false, length = 50)
+    private String skuProduct;
 
-    @Column(name = "quantidade", nullable = false)
-    private Integer quantidade;
+    @Column(name = "product_name", nullable = false, length = 100)
+    private String productName;
+
+    @Column(name = "quantity", nullable = false)
+    private Integer quantity;
 
     @DecimalMin(value = "0.00", inclusive = false)
-    @Column(name = "preco_unitario", precision = 10, scale = 2, nullable = false)
-    private BigDecimal precoUnitario;
+    @Column(name = "unit_price", precision = 10, scale = 2, nullable = false)
+    private BigDecimal unitPrice;
 
     @DecimalMin(value = "0.00", inclusive = false)
     @Column(name = "subtotal", precision = 10, scale = 2, nullable = false)

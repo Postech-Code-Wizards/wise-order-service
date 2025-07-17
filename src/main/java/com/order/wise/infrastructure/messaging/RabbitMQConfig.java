@@ -16,8 +16,8 @@ public class RabbitMQConfig {
     public static final String EXCHANGE_NAME = "order_exchange";
     public static final String ORDER_QUEUE_NAME = "order_queue";
     public static final String STOCK_QUEUE_NAME = "stock-baixa-queue";
+    public static final String STOCK_RESPONSE_QUEUE_NAME ="stock-resposta-queue";
     public static final String PAYMENT_QUEUE_NAME = "payment_queue";
-    public static final String ORDER_ROUTING_KEY = "order";
     public static final String STOCK_ROUTING_KEY = "stock-baixa-routing-key";
     public static final String PAYMENT_ROUTING_KEY = "payment";
 
@@ -29,6 +29,11 @@ public class RabbitMQConfig {
     @Bean
     public Queue stockQueue() {
         return new Queue(STOCK_QUEUE_NAME, true);
+    }
+
+    @Bean
+    public Queue stockRespostaQueue() {
+        return new Queue(STOCK_RESPONSE_QUEUE_NAME, true);
     }
 
     @Bean

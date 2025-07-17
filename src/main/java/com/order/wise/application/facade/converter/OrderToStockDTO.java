@@ -1,20 +1,20 @@
 package com.order.wise.application.facade.converter;
 
-import com.order.wise.domain.Pedido;
+import com.order.wise.domain.Order;
 import com.order.wise.gateway.messaging.rabbitmq.dto.StockDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class PedidoToStockDTO {
+public class OrderToStockDTO {
 
-    public List<StockDTO> execute(Pedido pedido) {
+    public List<StockDTO> execute(Order pedido) {
 
-        return pedido.getItensPedidos().stream()
+        return pedido.getOrderItems().stream()
                 .map(item -> new StockDTO(
-                        item.getProdutoId(),
-                        item.getQuantidade(),
+                        item.getProductId(),
+                        item.getQuantity(),
                         pedido.getId()
                 ))
                 .toList();

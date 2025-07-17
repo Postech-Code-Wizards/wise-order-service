@@ -1,6 +1,6 @@
 package com.order.wise.application.usecase;
 
-import com.order.wise.domain.Pedido;
+import com.order.wise.domain.Order;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,11 +14,10 @@ public class ProcessOrderUseCase {
     private final LowStockUseCase lowStockUseCase;
     private final PaymentUseCase paymentUseCase;
 
-    public void execute(Pedido pedido) {
-
-        log.info("Processing order: {}", pedido);
-        Pedido pedidoSalvo = createOrderUseCase.createOrder(pedido);
-        lowStockUseCase.execute(pedidoSalvo);
-        paymentUseCase.execute(pedidoSalvo);
+    public void execute(Order order) {
+        log.info("Processing order: {}", order);
+        Order orderSaved = createOrderUseCase.createOrder(order);
+        lowStockUseCase.execute(orderSaved);
+        paymentUseCase.execute(orderSaved);
     }
 }

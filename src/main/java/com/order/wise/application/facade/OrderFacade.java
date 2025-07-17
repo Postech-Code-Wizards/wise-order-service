@@ -1,8 +1,8 @@
 package com.order.wise.application.facade;
 
-import com.order.wise.application.facade.converter.PedidoDTOToDomain;
+import com.order.wise.application.facade.converter.OrderDTOToDomain;
 import com.order.wise.application.usecase.ProcessOrderUseCase;
-import com.order.wise.domain.Pedido;
+import com.order.wise.domain.Order;
 import com.order.wise.infrastructure.messaging.dto.OrderDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
 public class OrderFacade {
 
     private final ProcessOrderUseCase processOrderUseCase;
-    private final PedidoDTOToDomain pedidoDTOToDomain;
+    private final OrderDTOToDomain orderDTOToDomain;
 
     public void receiverOrder(OrderDTO orderDTO) {
-
-        Pedido pedido = pedidoDTOToDomain.execute(orderDTO);
-        processOrderUseCase.execute(pedido);
+        Order order = orderDTOToDomain.execute(orderDTO);
+        processOrderUseCase.execute(order);
     }
+
 }

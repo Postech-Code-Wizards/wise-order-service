@@ -7,16 +7,15 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentDTO {
 
-    private BigDecimal valorTotal;
-    private String dadosPagamento;
-    private Long pedidoId;
-    private Long clienteId;
+    private BigDecimal totalValue;
+    private String creditCardNumber;
+    private Long orderId;
+    private Long clientId;
 
 }
