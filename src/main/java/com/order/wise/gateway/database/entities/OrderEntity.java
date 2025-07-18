@@ -45,7 +45,7 @@ public class OrderEntity {
     private String creditCard;
 
     @Column(name = "payment_id")
-    private Long paymentId;
+    private String paymentId;
 
     @DecimalMin(value = "0.00", inclusive = false)
     @Column(name = "totalValue", precision = 10, scale = 2, nullable = false)

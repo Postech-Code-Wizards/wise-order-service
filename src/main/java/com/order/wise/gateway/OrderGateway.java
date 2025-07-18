@@ -8,4 +8,7 @@ public interface OrderGateway {
     Order save(Order order);
 
     void updateStatus(Long id, StatusEnum status);
+
+    void updatePayment(Long id, String paymentId);
+
 }

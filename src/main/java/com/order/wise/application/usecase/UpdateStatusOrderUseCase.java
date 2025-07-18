@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class UpdateStatusOrderUseCase {
 
-    private final OrderGateway pedidoGateway;
+    private final OrderGateway orderGateway;
 
     public void execute(Long orderId, StatusEnum status) {
-        pedidoGateway.updateStatus(orderId, status);
+        orderGateway.updateStatus(orderId, status);
     }
 
 }

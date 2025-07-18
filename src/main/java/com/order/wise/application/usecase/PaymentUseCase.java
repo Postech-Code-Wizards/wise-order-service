@@ -1,9 +1,10 @@
 package com.order.wise.application.usecase;
 
-import com.order.wise.application.facade.converter.OrderToPaymentDTO;
 import com.order.wise.domain.Order;
+import com.order.wise.domain.enums.StatusEnum;
 import com.order.wise.gateway.PaymentGateway;
-import com.order.wise.gateway.messaging.rabbitmq.dto.PaymentDTO;
+import com.order.wise.gateway.openfeign.converter.OrderToPaymentRequest;
+import com.order.wise.gateway.openfeign.request.PaymentRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,12 +14,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentUseCase {
 
-    private final OrderToPaymentDTO orderToPaymentDTO;
     private final PaymentGateway paymentGateway;
+    private final UpdatePaymentOrderUseCase updatePaymentOrderUseCase;
+    private final UpdateStatusOrderUseCase updateStatusOrderUseCase;
 
     public void execute(Order order) {
         log.info("Processing payment for order: {} with amount: {}", order.getId(), order.getTotalValue());
-        PaymentDTO paymentRequest = orderToPaymentDTO.execute(order);
-        paymentGateway.send(paymentRequest);
+        String paymentId = paymentGateway.getPayment(order);
+        if (paymentId != null) {
+            log.info("Payment successful for order: {} with payment ID: {}", order.getId(), paymentId);
+            updatePaymentOrderUseCase.execute(order.getId(), paymentId);
+            updateStatusOrderUseCase.execute(order.getId(), StatusEnum.CLOSED_SUCCESSFULLY);
+        } else {
+            log.error("Payment failed for order: {}", order.getId());
+            updateStatusOrderUseCase.execute(order.getId(), StatusEnum.CLOSED_NO_CREDIT);
+            // todo - Precisa chamar o processo de estorno do estoque caso tenha sido reservado
+        }
     }
 }

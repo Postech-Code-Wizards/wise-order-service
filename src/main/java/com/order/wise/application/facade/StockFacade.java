@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class StockFacade {
 
-    private final UpdateStatusOrderUseCase updateStatusPedidoUseCase;
+    private final UpdateStatusOrderUseCase updateStatusOrderUseCase;
 
     public void stockResponse(Long orderId, boolean status) {
-        StatusEnum statusUpdate = status ? StatusEnum.OPEN : StatusEnum.CLOSED_OUT_OF_STOCK;
-        updateStatusPedidoUseCase.execute(orderId, statusUpdate);
+        if(!status) {
+            updateStatusOrderUseCase.execute(orderId, StatusEnum.CLOSED_OUT_OF_STOCK);
+        }
     }
 }

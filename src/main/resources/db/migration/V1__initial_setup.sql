@@ -6,7 +6,7 @@ CREATE TABLE tb_order (
                          date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                          status status NOT NULL DEFAULT 'OPEN',
                          credit_card VARCHAR(19) NOT NULL,
-                         payment_id BIGINT NULL,
+                         payment_id VARCHAR(50) NULL,
                          total_value DECIMAL(10,2) NOT NULL
 );
 

@@ -9,13 +9,13 @@ import java.util.List;
 @Component
 public class OrderToStockDTO {
 
-    public List<StockDTO> execute(Order pedido) {
+    public List<StockDTO> execute(Order order) {
 
-        return pedido.getOrderItems().stream()
+        return order.getOrderItems().stream()
                 .map(item -> new StockDTO(
                         item.getProductId(),
                         item.getQuantity(),
-                        pedido.getId()
+                        order.getId()
                 ))
                 .toList();
     }

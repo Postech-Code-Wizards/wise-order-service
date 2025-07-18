@@ -34,4 +34,15 @@ public class OrderJpaGateway implements OrderGateway {
         orderRepository.save(orderEntity);
 
     }
+
+    @Override
+    public void updatePayment(Long id, String paymentId) {
+
+        OrderEntity orderEntity = orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Order not found with ID: " + id));
+
+        orderEntity.setPaymentId(paymentId);
+        orderRepository.save(orderEntity);
+
+    }
 }

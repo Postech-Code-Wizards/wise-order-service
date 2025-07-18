@@ -1,9 +1,9 @@
 package com.order.wise.gateway;
 
-import com.order.wise.gateway.messaging.rabbitmq.dto.PaymentDTO;
+import com.order.wise.domain.Order;
 
 public interface PaymentGateway {
 
-    void send(PaymentDTO paymentDTO);
+    String getPayment(Order order);
 
 }

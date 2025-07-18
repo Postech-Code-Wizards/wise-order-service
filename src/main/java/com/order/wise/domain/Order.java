@@ -19,7 +19,7 @@ public class Order {
     private ZonedDateTime dateCreated;
     private StatusEnum status;
     private String creditCardNumber;
-    private Long paymentId;
+    private String paymentId;
     private BigDecimal totalValue;
     private List<OrderItem> orderItems;
 
