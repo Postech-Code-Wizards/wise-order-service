@@ -11,6 +11,7 @@ public class UpdatePaymentOrderUseCase {
     private final OrderGateway orderGateway;
 
     public void execute(Long orderId, String paymentId) {
+
         orderGateway.updatePayment(orderId, paymentId);
     }
 

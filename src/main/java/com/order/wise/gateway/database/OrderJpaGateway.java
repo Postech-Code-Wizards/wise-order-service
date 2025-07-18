@@ -21,7 +21,6 @@ public class OrderJpaGateway implements OrderGateway {
 
         OrderEntity orderEntity = orderConverter.toEntity(order);
         return orderConverter.toDomain(orderRepository.save(orderEntity));
-
     }
 
     @Override
@@ -32,7 +31,6 @@ public class OrderJpaGateway implements OrderGateway {
 
         orderEntity.setStatus(status);
         orderRepository.save(orderEntity);
-
     }
 
     @Override
@@ -43,8 +41,8 @@ public class OrderJpaGateway implements OrderGateway {
 
         orderEntity.setPaymentId(paymentId);
         orderRepository.save(orderEntity);
-
     }
+
     @Override
     public Order findById (Long id) {
         OrderEntity orderEntity = orderRepository.findById(id)

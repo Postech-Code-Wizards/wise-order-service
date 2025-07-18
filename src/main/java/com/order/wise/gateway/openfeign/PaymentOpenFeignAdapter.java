@@ -19,13 +19,13 @@ public class PaymentOpenFeignAdapter implements PaymentGateway {
     private final OrderToPaymentRequest orderToPaymentRequest;
 
     @Override
-    public String getPayment(Order order){
+    public String getPayment(Order order) {
 
         try {
             PaymentRequest paymentRequest = orderToPaymentRequest.execute(order);
             PaymentResponse paymentResponse = paymentOpenFeignClient.getPayment(paymentRequest);
             return paymentResponse.getPaymentId();
-        } catch (FeignException.NotFound e){
+        } catch (FeignException.NotFound e) {
             log.error("Error sending payment: {}", e.getMessage());
             return null;
         }
