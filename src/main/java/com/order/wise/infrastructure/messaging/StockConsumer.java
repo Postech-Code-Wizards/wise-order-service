@@ -19,5 +19,4 @@ public class StockConsumer {
         log.info("Received stock response message: {}", stockResponseDTO.toString());
         stockFacade.stockResponse(stockResponseDTO.getPedidoId(), stockResponseDTO.getStatus());
     }
-
 }

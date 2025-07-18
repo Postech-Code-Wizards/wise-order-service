@@ -3,8 +3,6 @@ package com.order.wise.application.usecase;
 import com.order.wise.domain.Order;
 import com.order.wise.domain.enums.StatusEnum;
 import com.order.wise.gateway.PaymentGateway;
-import com.order.wise.gateway.openfeign.converter.OrderToPaymentRequest;
-import com.order.wise.gateway.openfeign.request.PaymentRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,6 +15,7 @@ public class PaymentUseCase {
     private final PaymentGateway paymentGateway;
     private final UpdatePaymentOrderUseCase updatePaymentOrderUseCase;
     private final UpdateStatusOrderUseCase updateStatusOrderUseCase;
+    private final ResetStockUseCase resetStockUseCase;
 
     public void execute(Order order) {
         log.info("Processing payment for order: {} with amount: {}", order.getId(), order.getTotalValue());
@@ -28,7 +27,7 @@ public class PaymentUseCase {
         } else {
             log.error("Payment failed for order: {}", order.getId());
             updateStatusOrderUseCase.execute(order.getId(), StatusEnum.CLOSED_NO_CREDIT);
-            // todo - Precisa chamar o processo de estorno do estoque caso tenha sido reservado
+            resetStockUseCase.execute(order);
         }
     }
 }

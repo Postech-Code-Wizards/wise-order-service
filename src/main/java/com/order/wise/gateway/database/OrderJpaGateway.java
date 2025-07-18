@@ -45,4 +45,10 @@ public class OrderJpaGateway implements OrderGateway {
         orderRepository.save(orderEntity);
 
     }
+    @Override
+    public Order findById (Long id) {
+        OrderEntity orderEntity = orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Order not found with ID: " + id));
+        return orderConverter.toDomain(orderEntity);
+    }
 }

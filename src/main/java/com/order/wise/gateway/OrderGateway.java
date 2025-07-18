@@ -11,4 +11,5 @@ public interface OrderGateway {
 
     void updatePayment(Long id, String paymentId);
 
+    Order findById(Long id);
 }
