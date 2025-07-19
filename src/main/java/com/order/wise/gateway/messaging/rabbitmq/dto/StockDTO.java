@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StockDTO {
 
-    private Long itemId;
+    private Long produtoId;
     private Integer quantidade;
     private Long pedidoId;
 

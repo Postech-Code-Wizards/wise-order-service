@@ -22,8 +22,8 @@ public class ResetStockGatewayImpl implements ResetStockGateway {
 
         log.info("[{}] Sending reset stock notification to RabbitMQ.", this.getClass().getSimpleName());
         rabbitTemplate.convertAndSend(
-                RabbitMQConfig.STOCK_REPOR_QUEUE,
-                RabbitMQConfig.STOCK_ROUTING_KEY,
+                RabbitMQConfig.EXCHANGE_NAME,
+                RabbitMQConfig.STOCK_RETURN_ROUTING_KEY,
                 stockDTO);
     }
 }
