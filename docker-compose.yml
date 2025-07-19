@@ -8,7 +8,7 @@ networks:
     driver: "bridge"
 
 services:
-  postgres_schedule:
+  postgres:
     image: postgres:alpine
     container_name: postgres_order_wise_compose
     restart: always
