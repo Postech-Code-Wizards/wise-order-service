@@ -4,8 +4,6 @@
 
 The **Order Service** is responsible for receiving orders, maintaining them in its database, and monitoring their status records. It also processes inventory cancellation and refund requests, as well as payment requests.
 
-This service aims to ensure that patients receive important information efficiently and without fail, providing **adequate follow-up** and ensuring that communications are recorded and can be audited later.
-
 ## 🗂️ Project Structure
 
 ### **1. Core Modules**
