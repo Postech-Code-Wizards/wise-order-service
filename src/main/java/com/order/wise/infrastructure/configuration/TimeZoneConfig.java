@@ -13,5 +13,4 @@ public class TimeZoneConfig {
         TimeZone.setDefault(TimeZone.getTimeZone("America/Sao_Paulo"));
     }
 
-
 }
