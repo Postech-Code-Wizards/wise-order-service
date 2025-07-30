@@ -1,7 +1,7 @@
 package com.order.wise.application.facade.converter;
 
 import com.order.wise.domain.OrderItem;
-import com.order.wise.infrastructure.messaging.dto.ProductDTO;
+import com.order.wise.infrastructure.rabbitmq.dto.ProductDTO;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,13 +11,14 @@ public class OrderItemDTOToDomain {
     }
 
     public static OrderItem execute(ProductDTO productDTO) {
-        return OrderItem.builder()
-                .productId(productDTO.getId())
-                .skuProduct(productDTO.getSku())
-                .productName(productDTO.getName())
-                .unitPrice(productDTO.getPrice())
-                .quantity(productDTO.getQuantity())
-                .subtotal(productDTO.getTotalPriceProduct())
-                .build();
+
+        return new OrderItem(null,
+                null,
+                null,
+                productDTO.getSku(),
+                null,
+                productDTO.getQuantity(),
+                null
+        );
     }
 }

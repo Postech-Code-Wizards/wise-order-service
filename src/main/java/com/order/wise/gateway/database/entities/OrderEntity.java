@@ -13,6 +13,7 @@ import org.hibernate.annotations.JdbcType;
 import org.hibernate.dialect.PostgreSQLEnumJdbcType;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -27,10 +28,13 @@ public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private BigInteger id;
 
-    @Column(name = "client_id", nullable = false)
-    private Long clientId;
+    @Column(name = "client_identifier", nullable = false, length = 50)
+    private String clientIdentifier;
+
+    @Column(name = "client_id")
+    private BigInteger clientId;
 
     @CreationTimestamp
     @Column(name = "date_created", nullable = false)
@@ -41,14 +45,14 @@ public class OrderEntity {
     @JdbcType(PostgreSQLEnumJdbcType.class)
     private StatusEnum status;
 
-    @Column(name = "credit_card", nullable = false, length =19 )
+    @Column(name = "credit_card", length =19, nullable = false)
     private String creditCard;
 
     @Column(name = "payment_id")
     private String paymentId;
 
     @DecimalMin(value = "0.00", inclusive = false)
-    @Column(name = "totalValue", precision = 10, scale = 2, nullable = false)
+    @Column(name = "totalValue", precision = 10, scale = 2)
     private BigDecimal totalValue;
 
     @OneToMany(mappedBy = "orderEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

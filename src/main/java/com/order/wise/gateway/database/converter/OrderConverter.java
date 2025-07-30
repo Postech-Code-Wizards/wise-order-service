@@ -17,6 +17,7 @@ public class OrderConverter {
 
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setId(order.getId());
+        orderEntity.setClientIdentifier(order.getClientIdentifier());
         orderEntity.setClientId(order.getClientId());
         orderEntity.setStatus(order.getStatus());
         orderEntity.setDateCreated(order.getDateCreated());
@@ -32,16 +33,16 @@ public class OrderConverter {
     public Order toDomain(OrderEntity orderEntity) {
         if (orderEntity == null) return null;
 
-        return Order.builder()
-                .id(orderEntity.getId())
-                .clientId(orderEntity.getClientId())
-                .status(orderEntity.getStatus())
-                .dateCreated(orderEntity.getDateCreated())
-                .creditCardNumber(orderEntity.getCreditCard())
-                .paymentId(orderEntity.getPaymentId())
-                .totalValue(orderEntity.getTotalValue())
-                .orderItems(orderItemConverter.toDomain(orderEntity.getOrderItemEntities(), null))
-                .build();
+        return new Order(orderEntity.getId(),
+                orderEntity.getClientId(),
+                orderEntity.getClientIdentifier(),
+                orderEntity.getDateCreated(),
+                orderEntity.getStatus(),
+                orderEntity.getCreditCard(),
+                orderEntity.getPaymentId(),
+                orderEntity.getTotalValue(),
+                orderItemConverter.toDomain(orderEntity.getOrderItemEntities(), null)
+        );
 
     }
 

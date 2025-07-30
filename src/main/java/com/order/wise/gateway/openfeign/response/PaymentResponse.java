@@ -6,9 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class PaymentResponse {
-
     private String paymentId;
     private String status;
     private String message;
-
 }

@@ -1,11 +1,11 @@
 package com.order.wise.gateway.openfeign.request;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-@Data
-@Builder
+@Getter
+@AllArgsConstructor
 public class PaymentRequest {
     private String creditCard;
-    private String totalValue;
+    private Double totalValue;
 }

@@ -15,17 +15,15 @@ public class OrderItemConverter {
 
         return orderItems
                 .stream()
-                .map(items -> {
-                    OrderItemEntity orderItemEntity = new OrderItemEntity();
-                    orderItemEntity.setOrderEntity(orderEntity);
-                    orderItemEntity.setProductId(items.getProductId());
-                    orderItemEntity.setSkuProduct(items.getSkuProduct());
-                    orderItemEntity.setProductName(items.getProductName());
-                    orderItemEntity.setQuantity(items.getQuantity());
-                    orderItemEntity.setUnitPrice(items.getUnitPrice());
-                    orderItemEntity.setSubtotal(items.getSubtotal());
-                    return orderItemEntity;
-                }).toList();
+                .map(items -> new OrderItemEntity(
+                        items.getId(),
+                        orderEntity,
+                        items.getProductId(),
+                        items.getSkuProduct(),
+                        items.getProductName(),
+                        items.getQuantity(),
+                        items.getUnitPrice()
+                )).toList();
     }
 
     public List<OrderItem> toDomain(List<OrderItemEntity> orderItemEntities, Order order) {
@@ -39,8 +37,7 @@ public class OrderItemConverter {
                         p.getSkuProduct(),
                         p.getProductName(),
                         p.getQuantity(),
-                        p.getUnitPrice(),
-                        p.getSubtotal()
+                        p.getUnitPrice()
                 )).toList();
 
     }
