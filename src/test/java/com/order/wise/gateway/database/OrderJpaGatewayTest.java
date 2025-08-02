@@ -13,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigInteger;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -57,7 +58,7 @@ class OrderJpaGatewayUnitTest {
     @DisplayName("Should update the status of an existing order")
     void updateStatus_ShouldUpdateOrderStatus() {
 
-        Long orderId = Instancio.create(Long.class);
+        BigInteger orderId = Instancio.create(BigInteger.class);
         StatusEnum newStatus = Instancio.create(StatusEnum.class);
         OrderEntity existingOrderEntity = Instancio.create(OrderEntity.class);
         existingOrderEntity.setId(orderId); // Ensure ID matches
@@ -75,7 +76,7 @@ class OrderJpaGatewayUnitTest {
     @DisplayName("Should throw RuntimeException when updating status for a non-existent order")
     void updateStatus_ShouldThrowExceptionWhenOrderNotFound() {
 
-        Long orderId = Instancio.create(Long.class);
+        BigInteger orderId = Instancio.create(BigInteger.class);
         StatusEnum newStatus = Instancio.create(StatusEnum.class);
 
         when(orderRepository.findById(orderId)).thenReturn(Optional.empty());
@@ -91,7 +92,7 @@ class OrderJpaGatewayUnitTest {
     @DisplayName("Should update the payment ID of an existing order")
     void updatePayment_ShouldUpdateOrderPaymentId() {
 
-        Long orderId = Instancio.create(Long.class);
+        BigInteger orderId = Instancio.create(BigInteger.class);
         String newPaymentId = Instancio.create(String.class);
         OrderEntity existingOrderEntity = Instancio.create(OrderEntity.class);
         existingOrderEntity.setId(orderId); // Ensure ID matches
@@ -109,7 +110,7 @@ class OrderJpaGatewayUnitTest {
     @DisplayName("Should throw RuntimeException when updating payment for a non-existent order")
     void updatePayment_ShouldThrowExceptionWhenOrderNotFound() {
 
-        Long orderId = Instancio.create(Long.class);
+        BigInteger orderId = Instancio.create(BigInteger.class);
         String newPaymentId = Instancio.create(String.class);
 
         when(orderRepository.findById(orderId)).thenReturn(Optional.empty());
@@ -124,7 +125,7 @@ class OrderJpaGatewayUnitTest {
     @DisplayName("Should find an order by ID and convert it to domain object")
     void findById_ShouldReturnOrderWhenFound() {
 
-        Long orderId = Instancio.create(Long.class);
+        BigInteger orderId = Instancio.create(BigInteger.class);
         OrderEntity foundOrderEntity = Instancio.create(OrderEntity.class);
         foundOrderEntity.setId(orderId); // Ensure ID matches
         Order expectedDomainOrder = Instancio.create(Order.class);
@@ -143,7 +144,7 @@ class OrderJpaGatewayUnitTest {
     @DisplayName("Should throw RuntimeException when finding a non-existent order by ID")
     void findById_ShouldThrowExceptionWhenOrderNotFound() {
 
-        Long orderId = Instancio.create(Long.class);
+        BigInteger orderId = Instancio.create(BigInteger.class);
 
         when(orderRepository.findById(orderId)).thenReturn(Optional.empty());
 

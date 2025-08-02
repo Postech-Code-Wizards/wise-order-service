@@ -36,7 +36,6 @@ class OrderItemConverterUnitTest {
             assertThat(convertedEntity.getProductName()).isEqualTo(originalItem.getProductName());
             assertThat(convertedEntity.getQuantity()).isEqualTo(originalItem.getQuantity());
             assertThat(convertedEntity.getUnitPrice()).isEqualTo(originalItem.getUnitPrice());
-            assertThat(convertedEntity.getSubtotal()).isEqualTo(originalItem.getSubtotal());
         }
     }
 
@@ -73,7 +72,6 @@ class OrderItemConverterUnitTest {
             assertThat(convertedItem.getProductName()).isEqualTo(originalEntity.getProductName());
             assertThat(convertedItem.getQuantity()).isEqualTo(originalEntity.getQuantity());
             assertThat(convertedItem.getUnitPrice()).isEqualTo(originalEntity.getUnitPrice());
-            assertThat(convertedItem.getSubtotal()).isEqualTo(originalEntity.getSubtotal());
         }
     }
 

@@ -21,7 +21,7 @@ class OrderToPaymentRequestUnitTest {
         PaymentRequest paymentRequest = orderToPaymentRequest.execute(order);
 
         assertThat(paymentRequest).isNotNull();
-        assertThat(paymentRequest.getTotalValue()).isEqualTo(order.getTotalValue().toString());
+        assertThat(paymentRequest.getTotalValue()).isEqualTo(order.getTotalValue().doubleValue());
         assertThat(paymentRequest.getCreditCard()).isEqualTo(order.getCreditCardNumber());
     }
 }

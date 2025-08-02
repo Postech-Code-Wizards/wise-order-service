@@ -2,7 +2,7 @@ package com.order.wise.application.facade.converter;
 
 import com.order.wise.domain.Order;
 import com.order.wise.domain.OrderItem;
-import com.order.wise.gateway.messaging.rabbitmq.dto.StockDTO;
+import com.order.wise.gateway.rabbitmq.dto.StockDTO;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

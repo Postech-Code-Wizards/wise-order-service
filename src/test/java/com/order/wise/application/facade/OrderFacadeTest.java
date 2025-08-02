@@ -1,9 +1,9 @@
 package com.order.wise.application.facade;
 
 import com.order.wise.application.facade.converter.OrderDTOToDomain;
-import com.order.wise.application.usecase.ProcessOrderUseCase;
+import com.order.wise.application.usecase.order.ProcessOrderUseCase;
 import com.order.wise.domain.Order;
-import com.order.wise.infrastructure.messaging.dto.OrderDTO;
+import com.order.wise.infrastructure.rabbitmq.dto.OrderDTO;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

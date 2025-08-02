@@ -1,7 +1,7 @@
 package com.order.wise.application.facade.converter;
 
 import com.order.wise.domain.Order;
-import com.order.wise.gateway.messaging.rabbitmq.dto.StockDTO;
+import com.order.wise.gateway.rabbitmq.dto.StockDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

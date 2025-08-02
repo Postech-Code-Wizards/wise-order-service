@@ -8,10 +8,9 @@ import org.springframework.stereotype.Component;
 public class OrderToPaymentRequest {
 
     public PaymentRequest execute(Order order) {
-        return PaymentRequest.builder()
-                .totalValue(order.getTotalValue().toString())
-                .creditCard(order.getCreditCardNumber())
-                .build();
-
+        return new PaymentRequest(order.getCreditCardNumber(),
+                order.getTotalValue().doubleValue()
+        );
     }
+
 }
