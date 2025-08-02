@@ -28,6 +28,11 @@ public class RabbitMQConfig {
     }
 
     @Bean
+    public Queue orderQueue() {
+        return new Queue(ORDER_QUEUE_NAME, true);
+    }
+
+    @Bean
     public Queue stockQueue() {
         return new Queue(STOCK_QUEUE_NAME, true);
     }
